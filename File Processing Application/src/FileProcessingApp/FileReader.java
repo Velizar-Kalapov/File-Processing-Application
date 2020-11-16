@@ -34,7 +34,7 @@ public class FileReader {
 		
 			i++;
 		}
-		} catch(Exception e) {
+		} catch(FileNotFoundException e) {
 			System.out.println(e);
 		}
 	 }
@@ -48,22 +48,21 @@ public class FileReader {
 			 scanner.nextLine();
 		}
 		
-		} catch (Exception e) {
+		} catch (FileNotFoundException e) {
 			System.out.println(e);
 		}
 		return i;
 		
 	}
 	
-	public void swapLines(int a , int b) {
+	public void swapLines(int a , int b) throws ArrayIndexOutOfBoundsException  {
 		a--; 
 		b--;
-		if(a > this.numberOfLines || b > this.numberOfLines) { 
-			System.out.println("There's not that many lines.");
-			return;
+		if(a > this.numberOfLines || b > this.numberOfLines || a < 0 || b < 0) { 
+			throw new ArrayIndexOutOfBoundsException("Line not found");
 		}
 		try {
-			//System.out.println("a: " + a + "b: " + b );
+			
 			FileWriter writer = new FileWriter(file);
 			for (int i = 0; i < listOfLines.length; i++) {
 				if (i == a ){
@@ -93,7 +92,7 @@ public class FileReader {
 		} catch (emptyIndexException e) {
 			System.out.println(e.getMessage());
 		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("There's not that many lines." );
+			System.out.println("Line not found" );
 		}
 		try {
 			FileWriter writer = new FileWriter(file);

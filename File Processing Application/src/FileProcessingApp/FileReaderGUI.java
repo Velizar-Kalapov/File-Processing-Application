@@ -1,7 +1,6 @@
 package FileProcessingApp;
 
 import java.awt.Dimension;
-import java.awt.ScrollPane;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -10,7 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -33,13 +31,11 @@ public class FileReaderGUI extends JFrame implements ActionListener  {
 	private String[] columns;
 	private JScrollPane pane;
 	DefaultTableModel model = new DefaultTableModel();
-	/**
-	 * Create the panel.
-	 */
+	
 	public FileReaderGUI() {
 		getContentPane().setLayout(null);
 		this.setBounds(100, 100, 500, 480);
-		//this.setPreferredSize(new Dimension (100, 100));
+		
 		this.setResizable(false);
 		
 		openFileButton = new JButton("Open File");
@@ -166,6 +162,8 @@ public class FileReaderGUI extends JFrame implements ActionListener  {
 			makeJTable();
 			} catch (NumberFormatException ex) {
 				System.out.println("Invalid input");
+			} catch (ArrayIndexOutOfBoundsException ex) {
+				System.out.println(ex.getMessage());
 			}
 			} 
 		if (e.getSource() == buttonSwapWords) {
@@ -179,19 +177,19 @@ public class FileReaderGUI extends JFrame implements ActionListener  {
 			makeJTable();
 			} catch (NumberFormatException ex) {
 				System.out.println("Invalid input");
-			}
+			} 
 			
 		}
 		if (e.getSource() == buttonSetFirst) {
 			fieldFirstLine.setText(selectedLine.getText());
 			fieldFirstWord.setText(selectedWord.getText());
-			//makeJTable();
+			
 			
 		}
 		if (e.getSource() == buttonSetSecond) {
 			fieldSecondLine.setText(selectedLine.getText());
 			fieldSecondWord.setText(selectedWord.getText());
-		//	makeJTable();
+		
 			
 			
 		}	
